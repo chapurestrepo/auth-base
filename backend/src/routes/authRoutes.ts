@@ -14,7 +14,7 @@ router.get(
   "/google/callback",
   passport.authenticate("google", { failureRedirect: "/" }),
   (req, res) => {
-    res.redirect("/dashboard"); // Redirige a la página protegida
+    res.redirect("http://localhost:5173/dashboard"); // Redirige a la página protegida
   }
 );
 
