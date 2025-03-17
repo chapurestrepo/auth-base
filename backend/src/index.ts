@@ -12,9 +12,12 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// ✅ Definir clientURL basado en el entorno
+const clientURL = process.env.CLIENT_URL || "http://localhost:5173";
+
 connectDB();
 
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(cors({ origin: clientURL, credentials: true }));
 app.use(express.json());
 
 app.use(
@@ -29,6 +32,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/auth", authRoutes);
+
+// ✅ Corregir la redirección después del login
+app.get("/auth/google/callback", (req, res) => {
+  res.redirect(`${clientURL}/dashboard`);
+});
 
 app.get("/", (req, res) => {
   res.send("Backend funcionando con autenticación!");

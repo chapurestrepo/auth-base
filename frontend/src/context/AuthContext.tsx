@@ -1,4 +1,6 @@
+
 import { createContext, useState, useEffect, ReactNode } from "react";
+
 
 interface User {
   _id: string;
@@ -12,6 +14,8 @@ interface AuthContextType {
   login: () => void;
   logout: () => void;
 }
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -27,11 +31,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const login = () => {
-    window.location.href = "/auth/google";
+    window.location.href = `${API_URL}/auth/google`;
   };
 
-  const logout = () => {
-    fetch("/auth/logout", { credentials: "include" }).then(() => setUser(null));
+  const logout = async () => {
+    await fetch(`${API_URL}/auth/logout`, { credentials: "include" });
+    setUser(null);
   };
 
   return (
