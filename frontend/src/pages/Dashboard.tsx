@@ -26,7 +26,7 @@ const Dashboard = () => {
       <img src={auth.user.profilePhoto} alt="Avatar" width={100} />
       <p>{auth.user.email}</p>
       {userData && <p>Datos extra del usuario: {JSON.stringify(userData)}</p>}
-      <button onClick={auth.logout}>Cerrar sesión</button>
+      <button onClick={auth.logout}>Cerrar sesión.</button>
     </div>
   );
 };
