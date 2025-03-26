@@ -4,6 +4,7 @@ import session from "express-session";
 import dotenv from "dotenv";
 import connectDB from "./config/db";
 import passport from "passport";
+import MongoStore from "connect-mongo"; // ✅ Importamos connect-mongo
 import "./config/passport";
 import authRoutes from "./routes/authRoutes";
 
@@ -20,11 +21,16 @@ connectDB();
 app.use(cors({ origin: clientURL, credentials: true }));
 app.use(express.json());
 
+// ✅ Configurar sesión con MongoDB
 app.use(
   session({
-    secret: process.env.SESSION_SECRET as string,
+    secret: process.env.SESSION_SECRET || "default_secret", // Evita error si falta la variable
     resave: false,
     saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGODB_URI as string, // ✅ Usa la URL de MongoDB Atlas
+      ttl: 14 * 24 * 60 * 60, // 14 días
+    }),
   })
 );
 
