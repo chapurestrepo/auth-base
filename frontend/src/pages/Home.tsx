@@ -18,7 +18,7 @@ const Home = () => {
       ) : (
         <>
           <p>Inicia sesión para acceder a más contenido.</p>
-          <button onClick={auth.login}>Login con Google</button>
+          <button onClick={auth.login}>Login con Google!</button>
         </>
       )}
     </div>
