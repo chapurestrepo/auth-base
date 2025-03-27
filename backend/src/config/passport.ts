@@ -10,7 +10,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-      callbackURL: "/auth/google/callback",
+      callbackURL: process.env.GOOGLE_CALLBACK_URL as string, // ✅ Ahora usa la variable de entorno
     },
     async (_accessToken, _refreshToken, profile, done) => {
       try {
@@ -28,7 +28,6 @@ passport.use(
         return done(null, user);
       } catch (error) {
         return done(error, undefined);
-
       }
     }
   )
