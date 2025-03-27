@@ -28,7 +28,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
-      mongoUrl: process.env.MONGODB_URI as string, // ✅ Usa la URL de MongoDB Atlas
+      mongoUrl: process.env.MONGO_URI as string, // ✅ Usa la URL de MongoDB Atlas
       ttl: 14 * 24 * 60 * 60, // 14 días
     }),
   })
