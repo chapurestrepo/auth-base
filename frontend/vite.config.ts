@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/auth": "http://localhost:5000", // Redirige todas las llamadas de "/auth" al backend
+      "/auth": "https://google-auth-base.netlify.app", // Redirige todas las llamadas de "/auth" al backend
     },
   },
 });
