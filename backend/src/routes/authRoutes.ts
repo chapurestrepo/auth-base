@@ -1,7 +1,11 @@
 import express from "express";
 import passport from "passport";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const router = express.Router();
+const clientURL = process.env.CLIENT_URL as string; // ✅ Toma la URL base del cliente desde variables de entorno
 
 // Ruta para iniciar sesión con Google
 router.get(
@@ -14,7 +18,7 @@ router.get(
   "/google/callback",
   passport.authenticate("google", { failureRedirect: "/" }),
   (req, res) => {
-    res.redirect("http://localhost:5173/dashboard"); // Redirige a la página protegida
+    res.redirect(`${clientURL}/dashboard`); // ✅ Usa la URL base del cliente
   }
 );
 

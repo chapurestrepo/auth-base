@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    fetch("/auth/user", { credentials: "include" })
+    fetch(`${API_URL}/auth/user`, { credentials: "include" })
       .then((res) => res.json())
       .then((data) => {
         if (data) setUser(data);
