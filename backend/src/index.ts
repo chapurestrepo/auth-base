@@ -39,11 +39,6 @@ app.use(passport.session());
 
 app.use("/auth", authRoutes);
 
-// ✅ Corregir la redirección después del login
-app.get("/auth/google/callback", (req, res) => {
-  res.redirect(`${clientURL}/dashboard`);
-});
-
 app.get("/", (req, res) => {
   res.send("Backend funcionando con autenticación!");
 });

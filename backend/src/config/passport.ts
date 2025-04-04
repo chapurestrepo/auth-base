@@ -11,6 +11,7 @@ passport.use(
       clientID: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
       callbackURL: process.env.GOOGLE_CALLBACK_URL as string, // ✅ Ahora usa la variable de entorno
+      proxy: true,
     },
     async (_accessToken, _refreshToken, profile, done) => {
       try {
